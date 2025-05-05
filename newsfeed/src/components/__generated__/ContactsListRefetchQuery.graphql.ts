@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<fca14201bdf4b9e18101f543b4ad7cac>>
+ * @generated SignedSource<<020378db6e902e42b986b1d875259e63>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -26,7 +26,7 @@ export type ContactsListRefetchQuery = {
 const node: ConcreteRequest = (function(){
 var v0 = [
   {
-    "defaultValue": null,
+    "defaultValue": "",
     "kind": "LocalArgument",
     "name": "search"
   }
@@ -146,16 +146,16 @@ return {
     ]
   },
   "params": {
-    "cacheID": "3f46ff0d6639f39cf854f8a568c83e15",
+    "cacheID": "aa8ec0cae764bcfe1b1c41aaeb02a103",
     "id": null,
     "metadata": {},
     "name": "ContactsListRefetchQuery",
     "operationKind": "query",
-    "text": "query ContactsListRefetchQuery(\n  $search: String = null\n) {\n  viewer {\n    ...ContactsListFragment_40zwac\n  }\n}\n\nfragment ContactRowFragment on Actor {\n  __isActor: __typename\n  name\n  profilePicture {\n    ...ImageFragment\n  }\n}\n\nfragment ContactsListFragment_40zwac on Viewer {\n  contacts(search: $search) {\n    __typename\n    id\n    ...ContactRowFragment\n  }\n}\n\nfragment ImageFragment on Image {\n  url\n  altText\n}\n"
+    "text": "query ContactsListRefetchQuery(\n  $search: String = \"\"\n) {\n  viewer {\n    ...ContactsListFragment_40zwac\n  }\n}\n\nfragment ContactRowFragment on Actor {\n  __isActor: __typename\n  name\n  profilePicture {\n    ...ImageFragment\n  }\n}\n\nfragment ContactsListFragment_40zwac on Viewer {\n  contacts(search: $search) {\n    __typename\n    id\n    ...ContactRowFragment\n  }\n}\n\nfragment ImageFragment on Image {\n  url\n  altText\n}\n"
   }
 };
 })();
 
-(node as any).hash = "a58a5b12c5813e115be4ed129437cb3a";
+(node as any).hash = "8a0ee17a7865abda9581e1a626d9f10c";
 
 export default node;
