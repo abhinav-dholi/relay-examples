@@ -18,7 +18,7 @@ const StoryCommentsSectionFragment = graphql`
     count: { type: "Int", defaultValue: 3 }
   ) {
     comments(after: $cursor, first: $count)
-      @connection(key: "StoryCommentsSectionFragment_comments") # key is used when editing the connections contents during mutations
+      @connection(key: "StoryCommentsSectionFragment_comments")
       {
       edges {
         node {
