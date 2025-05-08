@@ -1,6 +1,6 @@
 import * as React from "react";
 import { graphql } from "relay-runtime";
-import { useFragment } from "react-relay";
+import { useFragment, usePaginationFragment } from "react-relay";
 import type { StoryCommentsSectionFragment$key } from "./__generated__/StoryCommentsSectionFragment.graphql";
 import Comment from "./Comment";
 import LoadMoreCommentsButton from "./LoadMoreCommentsButton";
@@ -17,7 +17,8 @@ const StoryCommentsSectionFragment = graphql`
     count: { type: "Int", defaultValue: 3 }
   ) {
     comments(after: $cursor, first: $count)
-      @connection(key: "StoryCommentsSectionPaginationQuery") {
+      @connection(key: "StoryCommentsSectionFragment_comments") # key is used when editing the connections contents during mutations
+      {
       edges {
         node {
           id
@@ -32,9 +33,9 @@ const StoryCommentsSectionFragment = graphql`
 `;
 
 export default function StoryCommentsSection({ story }: Props) {
-  const data = useFragment(StoryCommentsSectionFragment, story);
+  const {data, loadNext} = usePaginationFragment(StoryCommentsSectionFragment, story)
   const onLoadMore = () => {
-    /* TODO */
+    loadNext(3)
   };
   return (
     <div>
