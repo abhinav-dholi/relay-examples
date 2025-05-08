@@ -4,6 +4,7 @@ import { useFragment, usePaginationFragment } from "react-relay";
 import type { StoryCommentsSectionFragment$key } from "./__generated__/StoryCommentsSectionFragment.graphql";
 import Comment from "./Comment";
 import LoadMoreCommentsButton from "./LoadMoreCommentsButton";
+import SmallSpinner from "./SmallSpinner";
 
 export type Props = {
   story: StoryCommentsSectionFragment$key;
@@ -33,7 +34,7 @@ const StoryCommentsSectionFragment = graphql`
 `;
 
 export default function StoryCommentsSection({ story }: Props) {
-  const {data, loadNext} = usePaginationFragment(StoryCommentsSectionFragment, story)
+  const {data, loadNext, isLoadingNext} = usePaginationFragment(StoryCommentsSectionFragment, story)
   const onLoadMore = () => {
     loadNext(3)
   };
@@ -43,8 +44,9 @@ export default function StoryCommentsSection({ story }: Props) {
         <Comment key={edge.node.id} comment={edge.node} />
       ))}
       {data.comments.pageInfo.hasNextPage && (
-        <LoadMoreCommentsButton onClick={onLoadMore} />
+        <LoadMoreCommentsButton onClick={onLoadMore} disabled={isLoadingNext} />
       )}
+      {isLoadingNext && <SmallSpinner />}
     </div>
   );
 }
